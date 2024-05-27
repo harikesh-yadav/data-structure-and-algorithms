@@ -43,13 +43,12 @@ func SubsetSumDP(arr []int, size, sum int) bool {
 	i := size
 	j := sum
 	for i > 0 && j > 0 {
-		if matrix[i-1][j] {
-			i--
-		} else {
+		if !matrix[i-1][j] {
 			subset = append(subset, arr[i-1])
 			j -= arr[i-1]
-			i--
 		}
+		i--
+
 	}
 
 	fmt.Println(subset, "----")

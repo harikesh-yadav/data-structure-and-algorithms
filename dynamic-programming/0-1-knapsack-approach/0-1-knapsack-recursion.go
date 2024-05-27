@@ -26,10 +26,11 @@ func KnapsackRecursion(value, weight []int, size, W int) int {
 		return 0
 	}
 
-	if weight[size-1] < W {
+	if weight[size-1] <= W {
 		p1 := value[size-1] + KnapsackRecursion(value, weight, size-1, W-weight[size-1])
 		p2 := KnapsackRecursion(value, weight, size-1, W)
 		if p1 > p2 {
+
 			return p1
 		} else {
 			return p2

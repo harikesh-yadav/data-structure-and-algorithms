@@ -14,7 +14,7 @@ space complexity O(n^2)
 **/
 
 func main() {
-	str1 := "GEEKSFORGEEKS"
+	str1 := "BBABCBCAB"
 	n := len(str1)
 	count := longestPolidromicSubSequence(str1, n)
 	fmt.Println(count)
@@ -50,6 +50,35 @@ func longestPolidromicSubSequence(str1 string, n int) int {
 			}
 		}
 	}
+
+	for i := 0; i < n+1; i++ {
+		for j := 0; j < n+1; j++ {
+			fmt.Print(dp[i][j], ", ")
+		}
+		fmt.Println()
+	}
+
+	i := n
+	j := n
+	str := ""
+
+	for i > 0 && j > 0 {
+		if dp[i][j-1] == dp[i-1][j] {
+			if dp[i-1][j] != dp[i][j] {
+				str = string(str2[j-1]) + str
+				i--
+				j--
+			} else {
+				i--
+			}
+		} else if dp[i][j-1] > dp[i-1][j] {
+			j--
+		} else {
+			i--
+		}
+	}
+	fmt.Println(str)
+
 	return dp[n][n]
 }
 
