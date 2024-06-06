@@ -5,41 +5,40 @@ import (
 )
 
 /**
-Time Complexity: O(N) where N is the total number of nodes. Because it traverses all the nodes at least once.
-Auxiliary Space: O(1) if no recursion stack space is considered. Otherwise, O(h) where h is the height of the tree
+
 **/
 
-func inOrder(n *node) {
-	if n == nil {
-		return
+func ConvertToDLL(root *node) *node {
+	if root == nil {
+		return nil
 	}
-	inOrder(n.left)
-	fmt.Println(n.data)
-	inOrder(n.right)
-}
+	var head, prev *node
+	var convert func(root *node)
 
-func preOrder(n *node) {
-	if n == nil {
-		return
-	}
-	fmt.Println(n.data)
-	preOrder(n.left)
-	preOrder(n.right)
-}
+	convert = func(root *node) {
+		if root == nil {
+			return
+		}
+		convert(root.left)
 
-func postOrder(n *node) {
-	if n == nil {
-		return
+		if prev == nil {
+			head = root
+		} else {
+			root.left = prev
+			prev.right = root
+		}
+		prev = root
+		convert(root.right)
+
 	}
-	postOrder(n.left)
-	postOrder(n.right)
-	fmt.Println(n.data)
+	convert(root)
+	return head
 }
 
 func main() {
 	bt := &binaryTree{}
 	bt.insert(100)
-	bt.insert(20)
+	bt.insert(800)
 	bt.insert(500)
 	bt.insert(400)
 	bt.insert(30)
@@ -47,11 +46,14 @@ func main() {
 	bt.insert(600)
 	bt.insert(525)
 	bt.insert(700)
-	//print(bt.root, 1, "ROOT")
-	//inOrder(bt.root)
-	//preOrder(bt.root)
-	postOrder(bt.root)
 
+	head := ConvertToDLL(bt.root)
+
+	current := head
+	for current != nil {
+		fmt.Print(current.data, " ")
+		current = current.right
+	}
 }
 
 type node struct {
