@@ -15,13 +15,14 @@ func findMiddleElement(ll *singlyLinkedList) {
 	}
 
 	slow := ll.head
-	fast := ll.head.next
+	fast := ll.head
 	for fast != nil && fast.next != nil {
 		slow = slow.next
 		fast = fast.next.next
 	}
 
 	fmt.Print(slow.data)
+
 }
 
 func main() {
@@ -31,6 +32,7 @@ func main() {
 	ll.InsertAtEnd(3)
 	ll.InsertAtEnd(4)
 	ll.InsertAtEnd(5)
+	//ll.InsertAtEnd(6)
 
 	findMiddleElement(ll)
 

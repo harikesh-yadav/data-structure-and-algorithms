@@ -10,7 +10,6 @@ https://www.geeksforgeeks.org/floor-and-ceil-from-a-bst/
 
 Time Complexity: O(log N), where N is the number of node in BST.
 Auxiliary Space:
-
 ******/
 
 func findCeilValue(n *node, key int) int {

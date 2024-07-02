@@ -17,7 +17,7 @@ func isCircular(ll *singlyLinkedList) bool {
 		return false
 	}
 	slow := ll.head
-	fast := ll.head.next
+	fast := ll.head
 	for fast != nil && fast.next != nil {
 		if slow == fast {
 			return true
@@ -29,20 +29,26 @@ func isCircular(ll *singlyLinkedList) bool {
 
 }
 
-func removeLoop(ll *singlyLinkedList) bool {
+func removeLoop(ll *singlyLinkedList) {
 	if ll.head == nil {
-		return false
+		return
 	}
 
 	if !isCircular(ll) {
-		return false
+		fmt.Println("Not Circular ")
+		return
+	} else {
+		fmt.Println(" Circular ")
 	}
 	slow := ll.head
 	fast := ll.head.next
+
 	for fast != nil && fast.next != nil {
+
 		if slow == fast {
 			break
 		}
+
 		slow = slow.next
 		fast = fast.next.next
 	}
@@ -52,7 +58,6 @@ func removeLoop(ll *singlyLinkedList) bool {
 		fast = fast.next
 	}
 	fast.next = nil
-	return true
 
 }
 
@@ -63,7 +68,8 @@ func main() {
 	ll.InsertAtEnd(3)
 	ll.InsertAtEnd(4)
 	ll.InsertAtEnd(5)
-	fmt.Println(removeLoop(ll))
+
+	removeLoop(ll)
 	ll.Print()
 
 }

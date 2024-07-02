@@ -15,6 +15,7 @@ func height(n *node, result *int) int {
 	if n == nil {
 		return 0
 	}
+
 	lh := height(n.left, result)
 	rh := height(n.right, result)
 	mh := maximum(lh, rh) + 1

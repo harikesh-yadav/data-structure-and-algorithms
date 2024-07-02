@@ -13,23 +13,17 @@ func findAndDeleteMiddleElement(ll *singlyLinkedList) {
 		return
 	}
 	slow := ll.head
-	fast := ll.head.next
+	fast := ll.head
+	prev := ll.head
 
 	for fast != nil && fast.next != nil {
+		prev = slow
 		slow = slow.next
 		fast = fast.next.next
 	}
-	middle := slow
-	slow = ll.head
-	prev := ll.head
-	for slow != nil {
-		if slow.data == middle.data {
-			prev.next = slow.next
-			break
-		}
-		prev = slow
-		slow = slow.next
-	}
+
+	prev.next = slow.next
+
 }
 
 func main() {
@@ -39,6 +33,7 @@ func main() {
 	ll.InsertAtEnd(3)
 	ll.InsertAtEnd(4)
 	ll.InsertAtEnd(5)
+	ll.InsertAtEnd(6)
 
 	findAndDeleteMiddleElement(ll)
 	ll.Print()

@@ -2,8 +2,6 @@ package main
 
 import "fmt"
 
-
-
 func lowestCommonAncestor(n *node, n1, n2 int) *node {
 	if n == nil {
 		return nil
@@ -37,7 +35,7 @@ func main() {
 
 	n.right.left = &node{data: 6}
 	n.right.right = &node{data: 7}
-	n1 := 
+	n1 := 4
 	n2 := 7
 	fmt.Printf("Common Ancestor for %d and %d = %d", n1, n2, lowestCommonAncestor(n, n1, n2).data)
 
